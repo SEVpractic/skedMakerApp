@@ -10,23 +10,28 @@ public class WriterOperator {
 
     public void writeSkedByFirstDate(OperationsManager pattern, boolean isByFirst, LocalDate... dates) {
         LinkedList<LinkedList<LocalDate>> thisDates;
-        String fileContent = pattern.getPatternsName() + "\n";
+        String fileContent;
 
         if (isByFirst) {
             thisDates = calculateDatesByFirst(pattern, dates);
         } else thisDates = calculateDatesByLast(pattern, dates);
+
+        fileContent = createFileContent(pattern, thisDates);
     }
 
-    private String createFileContent(OperationsManager pattern, ) {
+    private String createFileContent(OperationsManager pattern, LinkedList<LinkedList<LocalDate>> thisDates) {
         String fileContent = pattern.getPatternsName() + "\n";
 
         for (int i = 0; i < pattern.getOperationsPattern().size(); i++) {
             fileContent += pattern.getOperationsPattern().get(i).getName() + ",";
-            for (LocalDate date : dates) {
-                fileContent += date + ",";
+
+            for (LinkedList<LocalDate> thisDate : thisDates) {
+                fileContent += thisDate.get(i) + ",";
             }
             fileContent += "\n";
         }
+
+        return fileContent;
     }
 
     private LinkedList<LinkedList<LocalDate>> calculateDatesByFirst(OperationsManager pattern, LocalDate... dates) {
