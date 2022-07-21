@@ -1,0 +1,5 @@
+Комплектация, 4, false, false, false
+Слесарная, 4, false, false, false
+Токарная, 36, false, false, false
+Слесарная, 4, false, false, false
+Контрольная, 8, false, false, false
